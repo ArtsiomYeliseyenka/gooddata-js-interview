@@ -10,15 +10,24 @@ const dateAttributeInMonths = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2142
 const dateAttribute = '/gdc/md/xms7ga4tf3g3nzucd8380o2bev8oeknp/obj/2180';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.onMonthChange = this.onMonthChange.bind(this);
+        this.state = {
+            month: '01',
+        };
+    }
 
-    getMonthFilter() {
+
+
+    getMonthFilter(month) {
         return {
             absoluteDateFilter: {
                 dataSet: {
                     uri: dateAttribute
                 },
-                from: '2016-01-01',
-                to: '2016-01-31'
+                from: `2016-${month}-01`,
+                to: `2016-${month}-31`
             }
 
         }
@@ -54,18 +63,24 @@ class App extends Component {
         }
     }
 
+    onMonthChange(e) {
+        const { value } = e.target;
+        this.setState({ month: value });
+    }
+
     renderDropdown() {
+      const { month } = this.state;
         return (
-            <select defaultValue="1">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
+            <select value={month} onChange={this.onMonthChange}>
+                <option value="01">January</option>
+                <option value="02">February</option>
+                <option value="03">March</option>
+                <option value="04">April</option>
+                <option value="05">May</option>
+                <option value="06">June</option>
+                <option value="07">July</option>
+                <option value="08">August</option>
+                <option value="09">September</option>
                 <option value="10">October</option>
                 <option value="11">November</option>
                 <option value="12">December</option>
@@ -74,8 +89,9 @@ class App extends Component {
     }
 
     render() {
+        const { month } = this.state;
         const projectId = 'xms7ga4tf3g3nzucd8380o2bev8oeknp';
-        const filters = [this.getMonthFilter()];
+        const filters = [this.getMonthFilter(month)];
         const measures = this.getMeasures();
         const viewBy = this.getViewBy();
 
