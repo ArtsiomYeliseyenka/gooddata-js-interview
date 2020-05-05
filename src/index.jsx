@@ -1,10 +1,17 @@
 // Copyright (C) 2007-2019, GoodData(R) Corporation. All rights reserved.
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from 'store';
+import App from 'components/app';
+import 'common/css/reset.scss';
+import { registerServiceWorker } from 'common/utils';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+render(
+  <Provider store={configureStore()}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
 registerServiceWorker();

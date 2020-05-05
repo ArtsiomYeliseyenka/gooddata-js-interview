@@ -1,0 +1,34 @@
+@import '~common/css/colors';
+.notification {
+  overflow: hidden;
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  text-align: center;
+  color: $COLOR_WHITE;
+  padding: 1rem;
+  cursor: pointer;
+
+  &.info {
+    background: $COLOR_BLUE;
+    text-shadow: 0 0.1rem 1rem darken($COLOR_BLUE, 10%);
+  }
+
+  &.success {
+    background: $COLOR_GREEN;
+    text-shadow: 0 1rem 1rem darken($COLOR_GREEN, 10%);
+  }
+
+  &.error {
+    background: $COLOR_RED;
+    text-shadow: 0 1rem 1rem darken($COLOR_RED, 10%);
+  }
+
+  &.opacity-enter-active {
+    opacity: 1;
+    transition: opacity 5500ms ease-in;
+  }
+
+  &.opacity-leave-active {
+    transition: opacity 5300ms ease-in;
+  }
+}
